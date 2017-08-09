@@ -4,9 +4,6 @@
 #
 version: 2
 jobs:
-  build: 
-    docker: 
-      - image: blahblah
   test:
     docker:
       - image: russjt/php-dummy-image-prod
