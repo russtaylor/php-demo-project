@@ -15,6 +15,6 @@ jobs:
       - checkout
 
       - run:
-        name: Run PHPUnit Tests
-        command: |
-          phpunit
+          name: Run PHPUnit Tests
+          command: |
+            phpunit
