@@ -8,10 +8,10 @@ jobs:
     docker:
       - image: russjt/php-dummy-image-prod
 
-    working_directory: /var/www/html/app
+    working_directory: /var/www/html/
 
     steps:
       - run:
           name: Run PHPUnit Tests
           command: |
-            phpunit
+            ./vendor/bin/phpunit .
