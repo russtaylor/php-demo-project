@@ -14,4 +14,4 @@ jobs:
       - run:
           name: Run PHPUnit Tests
           command: |
-            ./vendor/bin/phpunit .
+            ./vendor/bin/phpunit ./test/
