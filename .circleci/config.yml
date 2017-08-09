@@ -9,7 +9,7 @@ jobs:
       # specify the version you desire here
       - image: russjt/php-dummy-image-prod
 
-    working_directory: ~/
+    working_directory: /var/www/html/checkout
 
     steps:
       - checkout
