@@ -1,7 +1,7 @@
 # Initial configuration file to test a potential workflow in CircleCI.
 version: 2
 jobs:
-  build:
+  docker-build:
     docker:
       - image: docker:17.05.0-ce-git
     
@@ -54,7 +54,7 @@ workflows:
   version: 2
   build-test:
     jobs:
-      - build
-      - test
+      - docker-build
+      - test:
           requires:
-            - build
+            - docker-build
