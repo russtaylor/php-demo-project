@@ -26,7 +26,7 @@ jobs:
           name: Authenticate with Google Container Engine
           command: |
             echo ${GCLOUD_CREDS} | base64 -d > ${HOME}/gcp-key.json
-            gcloud auto activate-service-account --key-file ${HOME}/gcp-key.json
+            gcloud auth activate-service-account --key-file ${HOME}/gcp-key.json
             gcloud --quiet config set project ${GCLOUD_PROJECT_ID}
       - run:
           name: Build Docker Image
