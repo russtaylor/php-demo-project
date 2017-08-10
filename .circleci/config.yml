@@ -3,7 +3,7 @@ version: 2
 jobs:
   docker-build:
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: docker:stable-git
     
     working_directory: ~/docker-build
     steps:
@@ -59,6 +59,6 @@ workflows:
   build-test:
     jobs:
       - docker-build
-      - test:
-          requires:
-            - docker-build
+      # - test:
+      #     requires:
+      #       - docker-build
