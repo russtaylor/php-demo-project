@@ -8,6 +8,7 @@ jobs:
     working_directory: ~/docker-build
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Install dependencies
           command: |
