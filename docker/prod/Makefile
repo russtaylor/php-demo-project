@@ -1,7 +1,7 @@
 DOCKER ?= docker
 GCLOUD ?= gcloud
 
-REPO := russjt/php-dummy-image-prod
+REPO := gcr.io/etsy-gke-sandbox/php-ci-prod
 DATE := $(shell date '+%Y-%m-%d_%H-%M')
 
 default: container

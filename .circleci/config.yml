@@ -3,7 +3,7 @@ version: 2
 jobs:
   docker-build:
     docker:
-      - image: docker:stable-git
+      - image: russjt/docker-git-gcloud
     working_directory: ~/docker-build
     steps:
       - checkout
@@ -23,9 +23,15 @@ jobs:
             set +o pipefail
             docker load -i /caches/php-dummy-prod.tar | true
       - run:
+          name: Authenticate with Google Container Engine
+          command: |
+            echo ${GCLOUD_CREDS} | base64 -i --decode > ${HOME}/gcp-key.json
+            gcloud auto activate-service-account --key-file ${HOME}/gcp-key.json
+            gcloud --quiet config set project ${GCLOUD_PROJECT_ID}
+      - run:
           name: Build Docker Image
           command: |
-            cd docker/prod && make
+            cd docker/prod && make deploy
       - run:
           name: Save Docker image layer cache
           command: |
