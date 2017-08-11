@@ -17,7 +17,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E1DD270288
     && echo 'deb http://ppa.launchpad.net/git-core/ppa/ubuntu trusty main' > /etc/apt/sources.list.d/git.list \
     && apt-get update \
     && apt-get install -y git unzip zip php-pear \
-    && ./composer.phar install \
+    && ./composer.phar update \
     && apt-get remove -y git \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
