@@ -27,6 +27,11 @@ jobs:
             echo ${GCLOUD_CREDS} | base64 -d > ${HOME}/gcp-key.json
             gcloud auth activate-service-account --key-file ${HOME}/gcp-key.json
             gcloud --quiet config set project ${GCLOUD_PROJECT_ID}
+      - run: 
+          name: Authenticate with Docker
+          command: |
+            mkdir -p ${HOME}/.docker
+            echo ${DOCKER_CREDS} | base64 -d > ${HOME}/.docker/config.json
       - run:
           name: Build & Deploy Docker Image
           command: |
