@@ -20,8 +20,7 @@ jobs:
       - run:
           name: Load Docker image layer cache
           command: |
-            set +o pipefail
-            docker load -i /caches/php-dummy-prod.tar | true
+            docker load -i /caches/php-dummy-prod.tar
       - run:
           name: Authenticate with Google Container Engine
           command: |
@@ -29,7 +28,7 @@ jobs:
             gcloud auth activate-service-account --key-file ${HOME}/gcp-key.json
             gcloud --quiet config set project ${GCLOUD_PROJECT_ID}
       - run:
-          name: Build Docker Image
+          name: Build & Deploy Docker Image
           command: |
             cd docker/prod && make deploy
       - run:
@@ -45,9 +44,7 @@ jobs:
   test:
     docker:
       - image: russjt/php-dummy-image-prod
-
     working_directory: /var/www/html/
-
     steps:
       - run:
           name: Run PHPUnit Tests
@@ -65,6 +62,6 @@ workflows:
   build-test:
     jobs:
       - docker-build
-      # - test:
-      #     requires:
-      #       - docker-build
+      - test:
+          requires:
+            - docker-build
