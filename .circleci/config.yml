@@ -63,7 +63,7 @@ jobs:
           path: test-results/
   deploy:
     docker:
-      - image: russjt/docker-git-gcloud
+      - image: russjt/gcloud-kubectl
     working_directory: ~/deploy
     steps:
       - checkout
