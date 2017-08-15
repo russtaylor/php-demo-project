@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Load Docker image layer cache
           command: |
-            docker load -i /caches/php-dummy-prod.tar
+            docker load < /caches/php-dummy-prod.tar
       - run:
           name: Authenticate with Google Container Engine
           command: |
