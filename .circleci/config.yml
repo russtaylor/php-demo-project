@@ -22,6 +22,10 @@ jobs:
           command: |
             docker load < /caches/php-dummy-prod.tar
       - run:
+          name: Show Docker Images
+          command: |
+            docker images
+      - run:
           name: Authenticate with Google Container Engine
           command: |
             echo ${GCLOUD_CREDS} | base64 -d > ${HOME}/gcp-key.json
