@@ -22,4 +22,4 @@ RUN apk update \
     && apk del build_deps \
     && rm -rf /var/cache/apk/*
     
-RUN gcloud components install kubectl
+RUN gcloud components install kubectl && ln -s /opt/google-cloud-sdk/bin/kubectl /bin/kubectl
