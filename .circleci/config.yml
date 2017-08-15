@@ -68,19 +68,19 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Authenticate with Google Container Engine
-        command: |
-          echo ${GCLOUD_CREDS} | base64 -d > ${HOME}/gcp-key.json
-          gcloud auth activate-service-account --key-file ${HOME}/gcp-key.json
-          gcloud --quiet config set project ${GCLOUD_PROJECT_ID}
+          name: Authenticate with Google Container Engine
+          command: |
+            echo ${GCLOUD_CREDS} | base64 -d > ${HOME}/gcp-key.json
+            gcloud auth activate-service-account --key-file ${HOME}/gcp-key.json
+            gcloud --quiet config set project ${GCLOUD_PROJECT_ID}
       - run:
-        name: Log into kubectl for GKE
-        command: |
-          gcloud container clusters get-credentials gke-sandbox --zone us-central1-c --project etsy-gke-sandbox
+          name: Log into kubectl for GKE
+          command: |
+            gcloud container clusters get-credentials gke-sandbox --zone us-central1-c --project etsy-gke-sandbox
       - run:
-        name: Update K8s Deployment
-        command: |
-          kubectl set image deployment/dummy-php-app app=gcr.io/etsy-gke-sandbox/php-ci-prod:${CIRCLE_SHA1}
+          name: Update K8s Deployment
+          command: |
+            kubectl set image deployment/dummy-php-app app=gcr.io/etsy-gke-sandbox/php-ci-prod:${CIRCLE_SHA1}
 workflows:
   version: 2
   build-test:
