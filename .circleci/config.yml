@@ -40,8 +40,8 @@ jobs:
           name: Save Docker image layer cache
           command: |
             mkdir -p /caches
-            images=
-            docker save -o /caches/php-dummy-prod.tar $(docker history -q russjt/php-dummy-image-prod:latest | tr '\n' ' ' | tr '<missing>  ' ' ')
+            images=$(docker history -q russjt/php-dummy-image-prod:latest | tr '\n' ' ' | tr '<missing>  ' ' ')
+            docker save -o /caches/php-dummy-prod.tar $images
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
