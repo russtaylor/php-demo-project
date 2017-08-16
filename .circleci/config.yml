@@ -22,10 +22,6 @@ jobs:
           command: |
             docker load < /caches/php-dummy-prod.tar
       - run:
-          name: Show Docker Images
-          command: |
-            docker images
-      - run:
           name: Authenticate with Google Container Engine
           command: |
             echo ${GCLOUD_CREDS} | base64 -d > ${HOME}/gcp-key.json
@@ -44,7 +40,7 @@ jobs:
           name: Save Docker image layer cache
           command: |
             mkdir -p /caches
-            docker save -o /caches/php-dummy-prod.tar russjt/php-dummy-image-prod
+            docker save -o /caches/php-dummy-prod.tar $(docker history -q russjt/php-dummy-image-prod:latest | tr '\n' ' ' | tr '<missing>  ' ' ')
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
