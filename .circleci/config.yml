@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Load Docker image layer cache
           command: |
-            docker load < /caches/php-dummy-prod.tar
+            docker load -i /caches/php-dummy-prod.tar
       - run:
           name: Authenticate with Google Container Engine
           command: |
@@ -40,6 +40,7 @@ jobs:
           name: Save Docker image layer cache
           command: |
             mkdir -p /caches
+            images=
             docker save -o /caches/php-dummy-prod.tar $(docker history -q russjt/php-dummy-image-prod:latest | tr '\n' ' ' | tr '<missing>  ' ' ')
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
