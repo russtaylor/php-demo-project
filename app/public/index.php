@@ -11,7 +11,7 @@ $config = ['settings' => [
 $app = new \Slim\App($config);
 
 $app->get('/', function($request, $response, $args) {
-    return $response->write("Hello, you! I've updated the app!");
+    return $response->write("Hello, you! I'm a boring old app!");
 });
 
 $app->run();
