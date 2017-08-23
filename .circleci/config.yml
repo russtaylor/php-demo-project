@@ -49,7 +49,10 @@ jobs:
 
   test:
     docker:
-      - image: russjt/php-dummy-image-prod
+      - image: gcr.io/etsy-gke-sandbox/php-ci-prod
+        auth: 
+          username: _json_key
+          password: $GCLOUD_GCR_CREDS
     working_directory: /var/www/html/
     steps:
       - run:
