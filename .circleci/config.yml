@@ -84,10 +84,17 @@ workflows:
   version: 2
   build-test:
     jobs:
+      - start-hold
+          type: approval
       - docker-build
+          requires: start-hold
       - test:
           requires:
             - docker-build
-      - deploy:
+      - deploy-hold
+          type: approval
           requires: 
             - test
+      - deploy:
+          requires: 
+            - deploy-hold
