@@ -86,7 +86,7 @@ workflows:
     jobs:
       - start-hold:
           type: approval
-      - docker-build
+      - docker-build:
           requires: start-hold
       - test:
           requires:
